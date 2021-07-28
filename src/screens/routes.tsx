@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from '../features/home';
+import Home from './home';
 
 const Routes: React.FC = () => {
   return (
