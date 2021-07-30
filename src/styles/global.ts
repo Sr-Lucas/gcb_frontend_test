@@ -17,32 +17,33 @@ export default createGlobalStyle`
 
     width: 100%;
     height: 100%;
+
+    @media (max-width: 600px) {
+      display: flex;
+    }
   }
 
   *, button, input {
     border: 0;
     background: none;
     outline: transparent;
-    font-family: ---apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Montserrat';
   }
 
   html {
-    background: var(--background);
+    background: var(--background-primary);
   }
 
   :root {
-    --primary: #272827;
-    --secondary: #B7B7B7;
-    --search: #CACACA;
+    --primary: #BADC58;
+    --secondary: #FFFFFF;
     --white: #ffff;
-    --gray: #C4C4C4;
-    --dark-gray: #707070;
-    --outline: #2F3336;
-    --title-color: #272827;
-    --subtitle-color: #858585;
-    --green: #51A951;
-    --red: #f44336;
-    --yellow: #ffea00;
-    --background: #F4F4F4;
+    --title-color: #1D164D;
+    --subtitle-color: #1D164D;
+    --text-color: #9E9BAF;
+    --background-primary: #FFFFFF;
+    --background-secondary: #FAFAFC;
+
+    --default-height: 768px;
   }
 `;
