@@ -60,6 +60,9 @@ export const Button = styled.button`
   border-radius: 10px;
   position: absolute;
   right: calc(20% + 1px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   @media (max-width: 970px) {
     right: calc(10% + 6px);
