@@ -16,7 +16,6 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     quotes: ['error', 'single'],
-    'prettier/prettier': 'error',
     'react/jsx-filename-extension': [
       'error',
       { extensions: ['.js', '.jsx', '.tsx', '.ts'] },
@@ -35,5 +34,11 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'import/no-unresolved': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 };
