@@ -63,20 +63,35 @@ export const NavigationWrapper = styled.div`
   @media (max-width: 1100px) {
     font-size: 12px;
     min-width: 300px;
-    max-width: 400px;
+    max-width: 500px;
+
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  @media (max-width: 970px) {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    font-size: 12px;
+    min-width: 0px;
+    max-width: 600px;
   }
 `;
 
 export const NavigatorHeaderButton = styled.button`
-  cursor: pointer;
   height: 2em;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: 'Muli';
   color: var(--white);
 
   @media (max-width: 1100px) {
     font-size: 12px;
+    margin-right: 2em;
+  }
+
+  @media (max-width: 760px) {
+    display: none;
   }
 `;
 
@@ -101,6 +116,7 @@ export const RegisterButton = styled.div`
   @media (max-width: 1100px) {
     width: 100px;
     height: 42px;
+    justify-self: flex-end;
 
     span {
       font-size: 12px;
@@ -134,6 +150,7 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-size: 48px;
   font-family: 'Montserrat';
+  font-weight: bold;
   color: var(--title-color);
 
   @media (max-width: 970px) {
@@ -146,34 +163,27 @@ export const Title = styled.h1`
 
 export const ShowcaseContainer = styled.div`
   display: none;
+  width: 100%;
 
   @media (max-width: 970px) {
-    margin-top: 10%;
-    width: 300px;
+    margin-top: 20%;
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  @media (max-width: 600px) {
-    width: 100%;
-  }
 `;
 
 export const BackDrop = styled.div`
+  position: relative;
   background-color: var(--primary);
-  position: absolute;
-  right: 0%;
   border-radius: 15px;
   z-index: -1;
   width: 100%;
   align-self: center;
 
   @media (max-width: 970px) {
-    margin-top: 5em;
-    top: 55%;
-    height: 150px;
+    height: 120px;
   }
 
   @media (max-width: 600px) {
@@ -182,11 +192,16 @@ export const BackDrop = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 300px;
-  height: 300px;
+  position: absolute;
+  right: calc(50vw - 200px);
+  bottom: 0px;
+
+  width: 250px;
+  height: 250px;
 
   @media (max-width: 600px) {
     width: 200px;
     height: 200px;
+    right: calc(50vw - 110px);
   }
 `;

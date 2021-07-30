@@ -35,8 +35,9 @@ const Home: React.FC = () => {
           <Title>Ready for Trying a new recipe?</Title>
           <Search />
           <ShowcaseContainer>
-            <BackDrop />
-            <Image src={Illustration} alt="" />
+            <BackDrop>
+              <Image src={Illustration} alt="" />
+            </BackDrop>
           </ShowcaseContainer>
         </Content>
       </ContentWrapper>
