@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
-import Illustration from '../../assets/images/Illustration.png';
+import { ContainerProps, ContentProps } from './Istyles';
 
-export const Container = styled.div`
+import TitleComponent from '../../app/components/Title';
+import ButtonComponent from '../../app/components/Button';
+
+export const Container = styled.div<ContainerProps>`
   margin: 0 auto;
   max-width: 1920px;
+  /* padding: 0 17% 0 17% 0; */
   background-color: var(--background-primary);
-  background-image: url(${(_) => Illustration});
+  background-image: url(${({ backgroundArt }) => backgroundArt});
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 0;
@@ -18,6 +22,10 @@ export const Container = styled.div`
 
   @media (max-width: 970px) {
     background: none;
+  }
+
+  :nth-child(2n) {
+    background-color: var(--background-secondary);
   }
 `;
 
@@ -95,46 +103,57 @@ export const NavigatorHeaderButton = styled.button`
   }
 `;
 
-export const RegisterButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 130px;
+export const RegisterButton = styled(ButtonComponent)`
   height: 52px;
-
-  cursor: pointer;
+  width: 130px;
   background-color: var(--white);
-  border-radius: 5px;
-
-  span {
-    text-align: center;
-    font-size: 16px;
-    font-family: 'Muli';
-    color: var(--primary);
-  }
+  color: var(--primary);
 
   @media (max-width: 1100px) {
     width: 100px;
     height: 42px;
     justify-self: flex-end;
-
-    span {
-      font-size: 12px;
-    }
+    font-size: 12px;
   }
 
   @media (max-width: 970px) {
     background-color: var(--primary);
-    span {
-      color: var(--white);
-    }
+    color: var(--white);
   }
 `;
 
-export const Content = styled.div`
-  position: absolute;
-  top: 18em;
-  width: 40%;
+export const Content = styled.div<ContentProps>`
+  ${({ align }) => {
+    if (align === 'center') {
+      return `
+        padding-top: 55px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      `;
+    }
+    if (align === 'left') {
+      return `
+        position: absolute;
+        height: 60%;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+      `;
+    }
+    return `
+        position: absolute;
+        top: 18em;
+        width: 40%;
+        margin-left: auto;
+      `;
+  }};
 
   @media (max-width: 970px) {
     position: relative;
@@ -144,20 +163,6 @@ export const Content = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-  }
-`;
-
-export const Title = styled.h1`
-  font-size: 48px;
-  font-family: 'Montserrat';
-  font-weight: bold;
-  color: var(--title-color);
-
-  @media (max-width: 970px) {
-    margin-top: 2em;
-    padding-left: 1em;
-    padding-right: 1em;
-    font-size: 38px;
   }
 `;
 
@@ -204,4 +209,26 @@ export const Image = styled.img`
     height: 200px;
     right: calc(50vw - 110px);
   }
+`;
+
+export const RecipeGrid = styled.div`
+  display: grid;
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  grid-template-columns: 528px 528px;
+  grid-row: auto auto;
+`;
+
+export const Title = styled(TitleComponent)`
+  @media (max-width: 970px) {
+    margin-top: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 38px;
+  }
+`;
+
+export const TitleCenterTopWrapper = styled.div`
+  position: absolute;
+  top: 2em;
 `;
