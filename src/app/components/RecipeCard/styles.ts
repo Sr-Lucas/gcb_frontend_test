@@ -3,8 +3,8 @@ import TitleComponent from '../Title';
 import ButtonComponent from '../Button';
 
 export const Container = styled.div`
-  height: 225px;
-  width: 528px;
+  max-height: 225px;
+  max-width: 528px;
 
   border-radius: 7px;
   background-color: #ffffff;
@@ -17,7 +17,8 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 225px;
+  height: 100%;
+  width: 50%;
 `;
 
 export const Content = styled.div`
@@ -29,13 +30,18 @@ export const Content = styled.div`
 
 export const Title = styled(TitleComponent)`
   margin-left: 20px;
+  font-size: 1rem;
 `;
 
 export const Button = styled(ButtonComponent)`
   margin-top: 14px;
   margin-left: 20px;
   color: var(--white);
-  height: 48px;
-  width: 134px;
   background-color: var(--primary);
+
+  @media (max-width: 1000px) {
+    height: 3em;
+    width: 7em;
+    font-size: 0.7rem;
+  }
 `;

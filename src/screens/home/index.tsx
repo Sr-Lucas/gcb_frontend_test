@@ -59,10 +59,10 @@ const Home: React.FC = () => {
               <Title size={32}>Our Best Recipes</Title>
             </TitleCenterTopWrapper>
             <RecipeGrid>
-              <RecipeCard image={Comida1} index={1} />
-              <RecipeCard image={Comida2} index={2} />
-              <RecipeCard image={Comida3} index={3} />
-              <RecipeCard image={Comida4} index={4} />
+              <RecipeCard image={Comida1} text="Broccoli Salad with Bacon" />
+              <RecipeCard image={Comida2} text="Classic Beef Burgers" />
+              <RecipeCard image={Comida3} text="Classic Potato Salad" />
+              <RecipeCard image={Comida4} text="Cherry Cobbler on the Grill" />
             </RecipeGrid>
           </Content>
         </ContentWrapper>

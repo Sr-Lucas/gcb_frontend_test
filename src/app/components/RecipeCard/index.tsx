@@ -3,18 +3,19 @@ import { Container, Image, Content, Title, Button } from './styles';
 
 interface RecipeCardProps {
   image: string;
-  index: number;
+  text: string;
 }
 
 const RecipeCard: React.FC<RecipeCardProps> = ({
   image,
-  index,
+
+  text,
 }: RecipeCardProps) => {
   return (
-    <Container id={`recipe-card-${index}`}>
+    <Container>
       <Image src={image} />
       <Content>
-        <Title size={30}>Broccoli Salad with Bacon</Title>
+        <Title size={30}>{text}</Title>
         <Button>See recipe</Button>
       </Content>
     </Container>

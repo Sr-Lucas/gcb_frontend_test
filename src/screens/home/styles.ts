@@ -32,7 +32,7 @@ export const Container = styled.div<ContainerProps>`
 export const ContentWrapper = styled.div`
   position: relative;
   margin: 0 139px 0 139px;
-  height: var(--default-height);
+  min-height: var(--default-height);
 
   @media (max-width: 1100px) {
     margin: 0 90px 0 90px;
@@ -213,22 +213,35 @@ export const Image = styled.img`
 
 export const RecipeGrid = styled.div`
   display: grid;
-  grid-column-gap: 50px;
-  grid-row-gap: 50px;
-  grid-template-columns: 528px 528px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  grid-template-columns: auto auto;
   grid-row: auto auto;
+  margin-top: 4.5em;
+
+  @media (max-width: 800px) {
+    margin-top: 4.5em;
+    grid-template-columns: auto;
+    grid-row: auto;
+  }
 `;
 
 export const Title = styled(TitleComponent)`
-  @media (max-width: 970px) {
+  @media (max-width: 800px) {
     margin-top: 2em;
     padding-left: 1em;
     padding-right: 1em;
-    font-size: 38px;
+    font-size: 1.8rem;
   }
 `;
 
 export const TitleCenterTopWrapper = styled.div`
   position: absolute;
   top: 2em;
+
+  @media (max-width: 800px) {
+    span {
+      font-size: 1.4rem;
+    }
+  }
 `;
