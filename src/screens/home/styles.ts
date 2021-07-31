@@ -219,8 +219,12 @@ export const RecipeGrid = styled.div`
   grid-row: auto auto;
   margin-top: 4.5em;
 
+  @media (max-width: 1000px) {
+    margin-top: 7em;
+  }
+
   @media (max-width: 800px) {
-    margin-top: 4.5em;
+    margin-top: 9em;
     grid-template-columns: auto;
     grid-row: auto;
   }
@@ -235,9 +239,30 @@ export const Title = styled(TitleComponent)`
   }
 `;
 
+export const Subtitle = styled(TitleComponent)`
+  margin-top: 1em;
+  color: #9e9baf;
+  font-weight: 400;
+  max-width: 80%;
+
+  @media (max-width: 800px) {
+    margin-top: 1em;
+    font-size: 0.8rem !important;
+    max-width: 100%;
+  }
+`;
+
 export const TitleCenterTopWrapper = styled.div`
   position: absolute;
   top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    text-align: center;
+    display: block;
+  }
 
   @media (max-width: 800px) {
     span {

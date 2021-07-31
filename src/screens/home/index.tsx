@@ -15,6 +15,7 @@ import {
   BackDrop,
   Image,
   RecipeGrid,
+  Subtitle,
 } from './styles';
 
 import Illustration from '../../assets/images/Illustration.png';
@@ -57,6 +58,10 @@ const Home: React.FC = () => {
           <Content align="center">
             <TitleCenterTopWrapper>
               <Title size={32}>Our Best Recipes</Title>
+              <Subtitle size={16}>
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </Subtitle>
             </TitleCenterTopWrapper>
             <RecipeGrid>
               <RecipeCard image={Comida1} text="Broccoli Salad with Bacon" />
