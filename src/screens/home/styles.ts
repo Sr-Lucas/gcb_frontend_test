@@ -12,8 +12,18 @@ export const Container = styled.div<ContainerProps>`
   background-color: var(--background-primary);
   background-image: url(${({ backgroundArt }) => backgroundArt});
   background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 0;
+
+  ${({ artPosition }) =>
+    artPosition === 'right'
+      ? `
+    background-position-x: 100%;
+    background-position-y: 0;
+  `
+      : `
+    background-position-x: 0;
+    background-position-y: 100%;
+  `}
+
   background-size: contain;
 
   @media (max-width: 1100px) {
@@ -147,12 +157,26 @@ export const Content = styled.div<ContentProps>`
         justify-content: center;
       `;
     }
-    return `
+    if (align === 'right') {
+      return `
         position: absolute;
-        top: 18em;
-        width: 40%;
-        margin-left: auto;
+        right: 0;
+        height: 100%;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+
+        @media (max-width: 1500px) {
+          top: 10em;
+          height: 80%;
+          width: 40%;
+        }
       `;
+    }
+
+    return '';
   }};
 
   @media (max-width: 970px) {
@@ -239,7 +263,7 @@ export const Title = styled(TitleComponent)`
   }
 `;
 
-export const Subtitle = styled(TitleComponent)`
+export const Text = styled(TitleComponent)`
   margin-top: 1em;
   color: #9e9baf;
   font-weight: 400;
@@ -268,5 +292,42 @@ export const TitleCenterTopWrapper = styled.div`
     span {
       font-size: 1.4rem;
     }
+  }
+`;
+
+export const Button = styled(ButtonComponent)`
+  margin-top: 1em;
+  height: 52px;
+  width: 150px;
+  color: var(--white);
+  background-color: #badc58;
+  margin-top: 2.5em;
+`;
+
+export const ContentWidthContraint = styled.div`
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+
+  @media (max-width: 1500px) {
+    width: 80%;
+
+    span:nth-child(1) {
+      font-size: 1.2rem;
+      margin-bottom: 1.2em;
+    }
+  }
+
+  @media (max-width: 970px) {
+    span {
+      margin: 0 auto;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  @media (max-width: 800px) {
+    padding-top: 8em;
   }
 `;

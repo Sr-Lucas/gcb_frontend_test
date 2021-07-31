@@ -1,4 +1,5 @@
 export interface ContainerProps {
+  artPosition?: string;
   backgroundArt?: string;
 }
 
