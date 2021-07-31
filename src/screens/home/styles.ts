@@ -331,3 +331,73 @@ export const ContentWidthContraint = styled.div`
     padding-top: 8em;
   }
 `;
+
+export const MembershipInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin-top: 2em;
+
+  button {
+    margin: 0;
+  }
+
+  @media (max-width: 1300px) {
+    flex-direction: column;
+    align-items: start;
+  }
+`;
+
+export const MembershipInput = styled.input`
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  max-width: 344px;
+  min-width: 344px;
+  height: 52px;
+  margin-right: 2em;
+  padding-left: 1em;
+
+  --placeholder-color: #b4b4b4;
+
+  ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: var(--placeholder-color);
+  }
+  ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: var(--placeholder-color);
+  }
+  :-ms-input-placeholder {
+    /* IE 10+ */
+    color: var(--placeholder-color);
+  }
+  :-moz-placeholder {
+    /* Firefox 18- */
+    color: var(--placeholder-color);
+  }
+
+  @media (max-width: 1300px) {
+    margin-bottom: 2em;
+  }
+
+  @media (max-width: 600px) {
+    margin: 2em auto;
+    min-width: 0;
+    max-width: 100vw;
+    width: 85vw;
+  }
+`;
+
+export const TitleMembership = styled(TitleComponent)`
+  @media (max-width: 1100px) {
+    font-size: 1.2rem;
+    margin-bottom: 1.2em;
+  }
+`;
+
+export const MembershipButton = styled(Button)`
+  @media (max-width: 600px) {
+    width: 85vw !important;
+  }
+`;

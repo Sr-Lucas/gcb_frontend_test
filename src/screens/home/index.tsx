@@ -18,10 +18,15 @@ import {
   RecipeGrid,
   Text,
   Button,
+  MembershipInputWrapper,
+  MembershipInput,
+  TitleMembership,
+  MembershipButton,
 } from './styles';
 import RecipeCard from '../../app/components/RecipeCard';
 
 import Illustration from '../../assets/images/Illustration.png';
+import Membership from '../../assets/images/membership.png';
 import IllustrationWithoutBg from '../../assets/images/IllustrationWithoutBG.svg';
 
 import BlocoService from '../../assets/images/bloco-service.png';
@@ -96,6 +101,34 @@ const Home: React.FC = () => {
               </Text>
             </ContentWidthContraint>
             <Button>Know more</Button>
+          </Content>
+        </ContentWrapper>
+      </Container>
+
+      <Container>
+        <ContentWrapper>
+          <Content align="center">
+            <TitleCenterTopWrapper>
+              <Title size={32}>Read Our Blog</Title>
+              <Text size={16}>
+                Far far away, behind the word mountains, far from the countries
+                Vokalia and Consonantia, there live the blind texts.
+              </Text>
+            </TitleCenterTopWrapper>
+          </Content>
+        </ContentWrapper>
+      </Container>
+
+      <Container backgroundArt={Membership} artPosition="right">
+        <ContentWrapper>
+          <Content align="left">
+            <TitleMembership size={32}>
+              Join our membership to get special offer
+            </TitleMembership>
+            <MembershipInputWrapper>
+              <MembershipInput placeholder="Enter you email address" />
+              <MembershipButton>Join</MembershipButton>
+            </MembershipInputWrapper>
           </Content>
         </ContentWrapper>
       </Container>
