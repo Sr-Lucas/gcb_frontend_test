@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CardContentComponent from './_components/CardContent';
 
 export const Container = styled.div`
   display: flex;
@@ -33,6 +34,18 @@ export const Container = styled.div`
   }
 `;
 
+export const ContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
+`;
+
 export const Logo = styled.div`
   padding: 2em 2em;
   height: 45px;
@@ -48,44 +61,6 @@ export const Logo = styled.div`
 
   @media (max-width: 330px) {
     padding-bottom: 3em;
-  }
-`;
-
-export const RegisterContentWrapper = styled.div`
-  width: 510px;
-  box-shadow: 0px 1px 4px rgb(0 0 0 / 5%), 0px 4px 16px rgb(0 0 0 / 6%);
-  border-radius: 8px;
-  padding: 36px 50px;
-  background-color: #fff;
-  align-self: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center !important;
-
-  @media (max-width: 960px) {
-    width: 100%;
-    border: none;
-    border-radius: 0;
-
-    box-shadow: none !important;
-    background: transparent !important;
-  }
-`;
-
-export const Title = styled.h1`
-  font-size: 2rem;
-  letter-spacing: -0.0024em;
-  margin: 0 0 30px;
-  line-height: 50px;
-  font-weight: bold;
-  font-family: 'Montserrat';
-
-  @media (max-width: 960px) {
-    font-size: 1.3rem;
   }
 `;
 
@@ -127,18 +102,6 @@ export const StartRegistrationButton = styled.button`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100%;
-
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
-`;
-
 export const RegisterArtWrapper = styled.div`
   width: 35%;
   height: 100%;
@@ -163,5 +126,16 @@ export const RegisterArtImage = styled.img`
   @media (max-width: 320px) {
     min-height: 12em;
     min-width: 12em;
+  }
+`;
+
+export const CardContent = styled(CardContentComponent)`
+  @media (max-width: 960px) {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none !important;
+    background: transparent !important;
   }
 `;
