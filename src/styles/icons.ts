@@ -1,1 +1,1 @@
-export { Search } from 'styled-icons/feather';
+export { Search, ArrowLeft } from 'styled-icons/feather';

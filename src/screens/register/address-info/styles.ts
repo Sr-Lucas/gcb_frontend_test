@@ -10,6 +10,22 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
+export const Header = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2em;
+`;
+
+export const Title = styled(TitleComponent)`
+  text-align: center !important;
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  margin-right: auto;
+  line-height: 1.3;
+`;
+
 export const Logo = styled.span`
   padding: 2em 2em;
   height: 45px;
@@ -26,10 +42,6 @@ export const Logo = styled.span`
   @media (max-width: 330px) {
     padding-bottom: 3em;
   }
-`;
-
-export const Title = styled(TitleComponent)`
-  font-size: 1.5rem;
 `;
 
 export const CardContent = styled(CardContentComponent)`
