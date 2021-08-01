@@ -1,4 +1,5 @@
 import React, { createRef } from 'react';
+import { useHistory } from 'react-router-dom';
 import Search from '../../app/components/Search';
 import {
   Container,
@@ -47,6 +48,8 @@ import BlogCard from '../../app/components/BlogCard';
 
 const Home: React.FC = () => {
   const scrollRef: any = createRef();
+
+  const history = useHistory();
 
   const enableKeyboardCursorToScroll = () => {
     if (scrollRef.current) {
@@ -99,7 +102,9 @@ const Home: React.FC = () => {
               <NavigatorHeaderButton>HEALTHY RECIPES</NavigatorHeaderButton>
               <NavigatorHeaderButton>BLOG</NavigatorHeaderButton>
               <NavigatorHeaderButton>JOIN</NavigatorHeaderButton>
-              <RegisterButton>REGISTER</RegisterButton>
+              <RegisterButton onClick={() => history.push('/register')}>
+                REGISTER
+              </RegisterButton>
             </NavigationWrapper>
           </Header>
           <Content align="left">
