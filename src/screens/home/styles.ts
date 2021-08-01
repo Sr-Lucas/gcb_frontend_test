@@ -419,19 +419,23 @@ export const Section = styled.section`
   justify-content: center;
   padding-left: 8em;
 
-  @media (orientation: portrait) and (max-width: 768px) {
+  @media (max-width: 860px) {
     width: 120vw;
   }
 
-  @media (orientation: portrait) and (max-width: 425px) {
+  @media (max-width: 670px) {
     width: 200vw;
   }
 
-  @media (orientation: portrait) and (max-width: 375px) {
+  @media (max-width: 410px) {
     width: 250vw;
   }
 
-  @media (orientation: portrait) and (max-width: 320px) {
+  @media (max-width: 320px) {
     width: 280vw;
+  }
+
+  @media (max-width: 300px) {
+    width: 300vw;
   }
 `;
