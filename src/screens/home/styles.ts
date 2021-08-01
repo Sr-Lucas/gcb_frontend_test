@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-
+import ScrollContainerComponent from 'react-indiana-drag-scroll';
 import { ContainerProps, ContentProps } from './Istyles';
-
 import TitleComponent from '../../app/components/Title';
 import ButtonComponent from '../../app/components/Button';
 
@@ -399,5 +398,40 @@ export const TitleMembership = styled(TitleComponent)`
 export const MembershipButton = styled(Button)`
   @media (max-width: 600px) {
     width: 85vw !important;
+  }
+`;
+
+export const ScrollContainer = styled(ScrollContainerComponent)`
+  width: 99vw;
+  overflow: hidden;
+  overflow-x: scroll;
+
+  margin-top: 4em;
+`;
+
+export const Section = styled.section`
+  padding: 0px;
+  margin: 0px;
+  height: 490px;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  justify-content: center;
+  padding-left: 8em;
+
+  @media (orientation: portrait) and (max-width: 768px) {
+    width: 120vw;
+  }
+
+  @media (orientation: portrait) and (max-width: 425px) {
+    width: 200vw;
+  }
+
+  @media (orientation: portrait) and (max-width: 375px) {
+    width: 250vw;
+  }
+
+  @media (orientation: portrait) and (max-width: 320px) {
+    width: 280vw;
   }
 `;

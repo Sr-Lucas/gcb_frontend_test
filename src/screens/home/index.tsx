@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import Search from '../../app/components/Search';
 import {
   Container,
@@ -22,6 +22,8 @@ import {
   MembershipInput,
   TitleMembership,
   MembershipButton,
+  Section,
+  ScrollContainer,
 } from './styles';
 import RecipeCard from '../../app/components/RecipeCard';
 
@@ -36,7 +38,57 @@ import Comida2 from '../../assets/images/comida_2.svg';
 import Comida3 from '../../assets/images/comida_3.svg';
 import Comida4 from '../../assets/images/comida_4.svg';
 
+import Blog1 from '../../assets/images/blog_image_1.svg';
+import Blog2 from '../../assets/images/blog_image_2.svg';
+import Blog3 from '../../assets/images/blog_image_3.svg';
+import Blog4 from '../../assets/images/blog_image_4.svg';
+
+import BlogCard from '../../app/components/BlogCard';
+
 const Home: React.FC = () => {
+  const scrollRef: any = createRef();
+
+  const enableKeyboardCursorToScroll = () => {
+    if (scrollRef.current) {
+      scrollRef.current.focus();
+    }
+  };
+
+  const posts = [
+    {
+      image: Blog1,
+      title: 'Quick-start guide to nuts and seeds',
+      author: {
+        name: 'Kevin Ibrahim',
+        avatar: 'https://i.pravatar.cc/300',
+      },
+    },
+    {
+      image: Blog2,
+      title: 'Nutrition: Tips for Improving Your Health',
+      author: {
+        name: 'Mike Jackson',
+        avatar: 'https://i.pravatar.cc/300',
+      },
+    },
+    {
+      image: Blog3,
+      title: 'The top 10 benefits of eating healthy',
+      author: {
+        name: 'Bryan McGregor',
+        avatar: 'https://i.pravatar.cc/300',
+      },
+    },
+    {
+      image: Blog4,
+      title: 'What Makes a Healthy Diet?',
+      author: {
+        name: 'Jashua',
+        avatar: 'https://i.pravatar.cc/300',
+      },
+    },
+  ];
+
   return (
     <>
       <Container backgroundArt={Illustration} artPosition="right">
@@ -115,6 +167,13 @@ const Home: React.FC = () => {
                 Vokalia and Consonantia, there live the blind texts.
               </Text>
             </TitleCenterTopWrapper>
+            <ScrollContainer vertical={false} horizontal>
+              <Section onFocus={enableKeyboardCursorToScroll} ref={scrollRef}>
+                {posts.map((post) => (
+                  <BlogCard post={post} />
+                ))}
+              </Section>
+            </ScrollContainer>
           </Content>
         </ContentWrapper>
       </Container>
