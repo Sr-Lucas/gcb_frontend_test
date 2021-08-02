@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Form } from '@unform/web';
+import { FormHandles, SubmitHandler } from '@unform/core';
 import FloatInput from '../../../app/components/FloatInput';
 
 import {
@@ -14,6 +16,12 @@ import {
 
 const UserInfo: React.FC = () => {
   const history = useHistory();
+  const formRef = useRef<FormHandles>(null);
+
+  const handleSubmit: SubmitHandler<FormData> = (_) => {
+    // eslint-disable-next-line no-console
+    console.log(formRef);
+  };
 
   return (
     <Container>
@@ -23,12 +31,14 @@ const UserInfo: React.FC = () => {
           <BackButton onClick={() => history.push('/register')} />
           <Title>User&apos;s information</Title>
         </Header>
-        <FloatInput labelText="Name" value="" onChange={() => {}} />
-        <FloatInput labelText="Birth date" value="" onChange={() => {}} />
-        <FloatInput labelText="CPF" value="" onChange={() => {}} />
-        <Button onClick={() => history.push('/register/address-info')}>
-          Continue
-        </Button>
+        <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
+          <FloatInput name="name" label="Name" onChange={() => {}} />
+          <FloatInput name="birthDate" label="Birth date" onChange={() => {}} />
+          <FloatInput name="cpf" label="CPF" onChange={() => {}} />
+          <Button onClick={() => history.push('/register/address-info')}>
+            Continue
+          </Button>
+        </Form>
       </CardContent>
     </Container>
   );

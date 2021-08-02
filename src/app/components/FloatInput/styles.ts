@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface FloatLabelProps {
   active: boolean;
+  error: boolean;
 }
 
 export const FloatLabel = styled.div.attrs<FloatLabelProps>(
@@ -30,16 +31,23 @@ export const FloatLabel = styled.div.attrs<FloatLabelProps>(
   :focus-within label {
     transform: translate(0, 5px) scale(0.75);
   }
+
+  input {
+    width: 100%;
+    height: 50px;
+    padding: 14px 16px 0 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-family: Gidole;
+    font-size: 16px;
+
+    ${({ error }) => (error ? 'border 1px solid red !important;' : '')}
+  }
 `;
 
-export const FloatLabelInput = styled.input`
-  width: 100%;
-  height: 50px;
-  padding: 14px 16px 0 10px;
-  outline: 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #fff;
-  font-family: Gidole;
-  font-size: 16px;
+export const Error = styled.span`
+  color: red;
+  margin-top: 8px;
 `;
