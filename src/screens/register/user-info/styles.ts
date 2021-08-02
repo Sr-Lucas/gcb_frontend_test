@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ButtonComponent from '../../../app/components/Button';
+import BackButtonComponent from '../_components/BackButton';
 import CardContentComponent from '../_components/CardContent';
 import TitleComponent from '../_components/Title';
 
@@ -16,6 +17,10 @@ export const Header = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 2em;
+`;
+
+export const BackButton = styled(BackButtonComponent)`
+  margin-right: auto;
 `;
 
 export const Title = styled(TitleComponent)`

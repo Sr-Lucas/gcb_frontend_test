@@ -10,6 +10,8 @@ import {
   RegisterArtImage,
   ContentWrapper,
   CardContent,
+  Header,
+  BackButton,
 } from './styles';
 
 import RegisterArt from '../../assets/images/register_art.svg';
@@ -21,7 +23,10 @@ const Register: React.FC = () => {
 
   return (
     <Container>
-      <Logo>Healthy Food</Logo>
+      <Header>
+        <BackButton onClick={() => history.push('/')} />
+        <Logo>Healthy Food</Logo>
+      </Header>
       <ContentWrapper>
         <RegisterArtWrapper>
           <RegisterArtImage src={RegisterArt} />

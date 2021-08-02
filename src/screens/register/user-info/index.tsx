@@ -1,9 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import FloatInput from '../../../app/components/FloatInput';
-import BackButton from '../_components/BackButton';
 
-import { Container, Logo, Title, CardContent, Button, Header } from './styles';
+import {
+  Container,
+  Logo,
+  Title,
+  CardContent,
+  Button,
+  Header,
+  BackButton,
+} from './styles';
 
 const UserInfo: React.FC = () => {
   const history = useHistory();

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import CardContentComponent from './_components/CardContent';
+import BackButtonComponent from './_components/BackButton';
 
 export const Container = styled.div`
   display: flex;
@@ -34,6 +35,38 @@ export const Container = styled.div`
   }
 `;
 
+export const Header = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const BackButton = styled(BackButtonComponent)`
+  margin-left: 1em;
+  color: white;
+  height: 2rem;
+  width: 2rem;
+  font-weight: bold;
+`;
+
+export const Logo = styled.h1`
+  height: 45px;
+  text-align: left;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--white);
+  margin-right: auto;
+  margin-left: 1em;
+
+  @media (max-width: 960px) {
+    text-align: center;
+    padding-bottom: 2em;
+  }
+
+  @media (max-width: 330px) {
+    padding-bottom: 3em;
+  }
+`;
+
 export const ContentWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -43,24 +76,6 @@ export const ContentWrapper = styled.div`
 
   @media (max-width: 960px) {
     flex-direction: column;
-  }
-`;
-
-export const Logo = styled.div`
-  padding: 2em 2em;
-  height: 45px;
-  text-align: left;
-  font-size: 32px;
-  font-weight: bold;
-  color: var(--white);
-
-  @media (max-width: 960px) {
-    text-align: center;
-    padding-bottom: 2em;
-  }
-
-  @media (max-width: 330px) {
-    padding-bottom: 3em;
   }
 `;
 

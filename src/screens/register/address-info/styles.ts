@@ -3,6 +3,8 @@ import ButtonComponent from '../../../app/components/Button';
 import CardContentComponent from '../_components/CardContent';
 import TitleComponent from '../_components/Title';
 
+import BackButtonComponent from '../_components/BackButton';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,6 +18,10 @@ export const Header = styled.div`
   align-items: center;
   width: 100%;
   margin-bottom: 2em;
+`;
+
+export const BackButton = styled(BackButtonComponent)`
+  margin-right: auto;
 `;
 
 export const Title = styled(TitleComponent)`
