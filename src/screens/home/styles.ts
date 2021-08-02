@@ -439,3 +439,36 @@ export const Section = styled.section`
     width: 300vw;
   }
 `;
+
+export const FooterWrapper = styled.div`
+  width: 100%;
+  height: 8em;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0 3em;
+
+  span {
+    margin-left: 2em;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  @media (max-width: 690px) {
+    flex-direction: column;
+
+    span {
+      margin-bottom: 1em;
+    }
+  }
+`;
+
+export const CopyrightText = styled.span`
+  margin-right: auto;
+  color: var(--title-color);
+
+  @media (max-width: 690px) {
+    margin-right: 0;
+  }
+`;

@@ -25,6 +25,8 @@ import {
   MembershipButton,
   Section,
   ScrollContainer,
+  FooterWrapper,
+  CopyrightText,
 } from './styles';
 import RecipeCard from '../../app/components/RecipeCard';
 
@@ -196,6 +198,14 @@ const Home: React.FC = () => {
           </Content>
         </ContentWrapper>
       </Container>
+
+      <FooterWrapper>
+        <CopyrightText>
+          © Copyrights 2019 Stack. All Rights Reserved.
+        </CopyrightText>
+        <span>Privacy Policy</span>
+        <span>Terms and Conditions</span>
+      </FooterWrapper>
     </>
   );
 };
