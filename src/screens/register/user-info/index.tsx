@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
-import FloatInput from '../../../app/components/FloatInput';
+import Input from '../../../app/components/Input';
 
 import {
   Container,
@@ -19,8 +19,10 @@ const UserInfo: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit: SubmitHandler<FormData> = (_) => {
+    const value = formRef.current?.getData();
     // eslint-disable-next-line no-console
-    console.log(formRef);
+    console.log(value);
+    // history.push('/register/address-info');
   };
 
   return (
@@ -32,12 +34,10 @@ const UserInfo: React.FC = () => {
           <Title>User&apos;s information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <FloatInput name="name" label="Name" onChange={() => {}} />
-          <FloatInput name="birthDate" label="Birth date" onChange={() => {}} />
-          <FloatInput name="cpf" label="CPF" onChange={() => {}} />
-          <Button onClick={() => history.push('/register/address-info')}>
-            Continue
-          </Button>
+          <Input name="name" label="Name" />
+          <Input name="birthDate" label="Birth date" />
+          <Input name="cpf" label="CPF" />
+          <Button>Continue</Button>
         </Form>
       </CardContent>
     </Container>

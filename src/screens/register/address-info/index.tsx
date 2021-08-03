@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
-import FloatInput from '../../../app/components/FloatInput';
+import Input from '../../../app/components/Input';
 
 import {
   Container,
@@ -19,6 +19,7 @@ const AddressInfo: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const handleSubmit: SubmitHandler<FormData> = (_) => {
+    formRef.current?.setErrors({ cep: 'teste' });
     // eslint-disable-next-line no-console
     console.log(formRef);
   };
@@ -32,17 +33,13 @@ const AddressInfo: React.FC = () => {
           <Title>User&apos;s Address information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <FloatInput name="cep" label="CEP" onChange={() => {}} />
-          <FloatInput name="state" label="State" onChange={() => {}} />
-          <FloatInput name="city" label="City" onChange={() => {}} />
-          <FloatInput name="address" label="Address" onChange={() => {}} />
-          <FloatInput
-            name="neighborhood"
-            label="Neighborhood"
-            onChange={() => {}}
-          />
-          <FloatInput name="number" label="Number" onChange={() => {}} />
-          <FloatInput name="reference" label="Reference" onChange={() => {}} />
+          <Input name="cep" label="CEP" />
+          <Input name="state" label="State" />
+          <Input name="city" label="City" />
+          <Input name="address" label="Address" />
+          <Input name="neighborhood" label="Neighborhood" />
+          <Input name="number" label="Number" />
+          <Input name="reference" label="Reference" />
           <Button>Register</Button>
         </Form>
       </CardContent>
