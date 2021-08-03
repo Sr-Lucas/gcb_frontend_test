@@ -26,7 +26,7 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }: InputProps) => {
   }, [fieldName, registerField]);
 
   return (
-    <InputWrapper>
+    <InputWrapper error={!!error}>
       {label && <label htmlFor={fieldName}>{label}</label>}
 
       <input
