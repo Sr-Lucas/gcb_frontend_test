@@ -20,8 +20,6 @@ const AddressInfo: React.FC = () => {
 
   const handleSubmit: SubmitHandler<FormData> = (_) => {
     formRef.current?.setErrors({ cep: 'Esse campo é obrigatório' });
-    // eslint-disable-next-line no-console
-    console.log(formRef);
   };
 
   return (

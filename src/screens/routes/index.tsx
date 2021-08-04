@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from './home';
-import Register from './register';
-import AddressInfo from './register/address-info';
-import UserInfo from './register/user-info';
+import Home from '../home';
+import Register from '../register';
+import AddressInfo from '../register/address-info';
+import UserInfo from '../register/user-info';
 
 const Routes: React.FC = () => {
   return (

@@ -15,15 +15,11 @@ import {
 } from './styles';
 
 const UserInfo: React.FC = () => {
+  // const { data } = useAppSelector(selectRegister);
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = (_) => {
-    const value = formRef.current?.getData();
-    // eslint-disable-next-line no-console
-    console.log(value);
-    // history.push('/register/address-info');
-  };
+  const handleSubmit: SubmitHandler<FormData> = (_) => {};
 
   return (
     <Container>
