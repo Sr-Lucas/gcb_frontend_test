@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useRef, useState } from 'react';
 import { useField } from '@unform/core';
@@ -7,7 +8,7 @@ import { InputWrapper } from './styles';
 interface Props {
   name: string;
   label: string;
-  // eslint-disable-next-line react/require-default-props
+  onChange?: Function;
   inputMask?: Function | undefined;
 }
 
@@ -18,6 +19,7 @@ const Input: React.FC<InputProps> = ({
   name,
   label,
   inputMask = () => {},
+  onChange = () => {},
   ...rest
 }: InputProps) => {
   const inputRef = useRef(null);
@@ -48,7 +50,7 @@ const Input: React.FC<InputProps> = ({
         id={fieldName}
         value={mask}
         onChange={(e) => {
-          if (rest.onChange) rest.onChange(e);
+          if (onChange) onChange(e);
           handleMask(e);
         }}
         {...rest}

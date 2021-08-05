@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
@@ -14,25 +14,13 @@ import {
   Header,
   BackButton,
 } from './styles';
-import { RegisterContext } from '../../../app/context/register-context/RegisterContext';
 import { cepMask } from './masks';
 
 const AddressInfo: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const { state, dispatch } = useContext(RegisterContext);
-
   const handleSubmit: SubmitHandler<FormData> = (_) => {
-    const addressInfoData = formRef.current?.getData();
-
-    dispatch({
-      type: 'SET_REGISTER_DATA',
-      payload: { data: addressInfoData },
-    });
-
-    dispatch({ type: 'SAVE_USER' });
-
     Swal.fire({
       icon: 'success',
       title: 'Cadastro realizado com sucesso!',
@@ -44,6 +32,8 @@ const AddressInfo: React.FC = () => {
     history.push('/');
   };
 
+  // const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+
   return (
     <Container>
       <Logo>Healthy Food</Logo>
@@ -53,46 +43,13 @@ const AddressInfo: React.FC = () => {
           <Title>User&apos;s Address information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Input
-            name="cep"
-            label="CEP"
-            defaultValue={state.data.cep}
-            inputMask={cepMask}
-          />
-          <Input
-            name="state"
-            label="State"
-            defaultValue={state.data.state}
-            disabled
-          />
-          <Input
-            name="city"
-            label="City"
-            defaultValue={state.data.city}
-            disabled
-          />
-          <Input
-            name="address"
-            label="Address"
-            defaultValue={state.data.address}
-            disabled
-          />
-          <Input
-            name="neighborhood"
-            label="Neighborhood"
-            defaultValue={state.data.neighborhood}
-            disabled
-          />
-          <Input
-            name="number"
-            label="Number"
-            defaultValue={state.data.number}
-          />
-          <Input
-            name="reference"
-            label="Reference"
-            defaultValue={state.data.reference}
-          />
+          <Input name="cep" label="CEP" inputMask={cepMask} />
+          <Input name="state" label="State" />
+          <Input name="city" label="City" />
+          <Input name="address" label="Address" disabled />
+          <Input name="neighborhood" label="Neighborhood" disabled />
+          <Input name="number" label="Number" />
+          <Input name="reference" label="Reference" />
           <Button>Register</Button>
         </Form>
       </CardContent>
