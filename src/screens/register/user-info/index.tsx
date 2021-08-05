@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
@@ -13,13 +13,23 @@ import {
   Header,
   BackButton,
 } from './styles';
+import { RegisterContext } from '../../../app/context/register-context/RegisterContext';
+import { cpfMask, dateMask } from './masks';
 
 const UserInfo: React.FC = () => {
-  // const { data } = useAppSelector(selectRegister);
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const handleSubmit: SubmitHandler<FormData> = (_) => {};
+  const { state, dispatch } = useContext(RegisterContext);
+
+  const handleSubmit: SubmitHandler<FormData> = (_) => {
+    const userInfoData = formRef.current?.getData();
+    dispatch({
+      type: 'SET_REGISTER_DATA',
+      payload: { data: userInfoData },
+    });
+    history.push('/register/address-info');
+  };
 
   return (
     <Container>
@@ -30,9 +40,19 @@ const UserInfo: React.FC = () => {
           <Title>User&apos;s information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Input name="name" label="Name" />
-          <Input name="birthDate" label="Birth date" />
-          <Input name="cpf" label="CPF" />
+          <Input name="name" label="Name" defaultValue={state.data.name} />
+          <Input
+            name="birthDate"
+            label="Birth date"
+            defaultValue={state.data.birthDate}
+            inputMask={dateMask}
+          />
+          <Input
+            name="cpf"
+            label="CPF"
+            defaultValue={state.data.cpf}
+            inputMask={cpfMask}
+          />
           <Button>Continue</Button>
         </Form>
       </CardContent>

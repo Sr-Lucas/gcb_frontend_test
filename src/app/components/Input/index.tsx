@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useField } from '@unform/core';
 
 import { InputWrapper } from './styles';
@@ -7,15 +7,24 @@ import { InputWrapper } from './styles';
 interface Props {
   name: string;
   label: string;
+  // eslint-disable-next-line react/require-default-props
+  inputMask?: Function | undefined;
 }
 
 // eslint-disable-next-line no-undef
 type InputProps = JSX.IntrinsicElements['input'] & Props;
 
-const Input: React.FC<InputProps> = ({ name, label, ...rest }: InputProps) => {
+const Input: React.FC<InputProps> = ({
+  name,
+  label,
+  inputMask = () => {},
+  ...rest
+}: InputProps) => {
   const inputRef = useRef(null);
 
   const { fieldName, defaultValue = '', registerField, error } = useField(name);
+
+  const [mask, setMask] = useState(defaultValue);
 
   useEffect(() => {
     registerField({
@@ -25,6 +34,11 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }: InputProps) => {
     });
   }, [fieldName, registerField]);
 
+  function handleMask(e: React.ChangeEvent<HTMLInputElement>) {
+    const maskedValue = inputMask(e.target.value);
+    return setMask(maskedValue);
+  }
+
   return (
     <InputWrapper error={!!error}>
       {label && <label htmlFor={fieldName}>{label}</label>}
@@ -32,7 +46,11 @@ const Input: React.FC<InputProps> = ({ name, label, ...rest }: InputProps) => {
       <input
         ref={inputRef}
         id={fieldName}
-        defaultValue={defaultValue}
+        value={mask}
+        onChange={(e) => {
+          if (rest.onChange) rest.onChange(e);
+          handleMask(e);
+        }}
         {...rest}
       />
 
