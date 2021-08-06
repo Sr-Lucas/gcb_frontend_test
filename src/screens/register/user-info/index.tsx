@@ -1,7 +1,8 @@
-import React, { useContext, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
+import * as Yup from 'yup';
 import Input from '../../../app/components/Input';
 
 import {
@@ -13,22 +14,42 @@ import {
   Header,
   BackButton,
 } from './styles';
-import { RegisterContext } from '../../../app/context/register-context/RegisterContext';
 import { cpfMask, dateMask } from './masks';
+import { dateRegex, cpfRegex } from './validations';
 
 const UserInfo: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
 
-  const { state, dispatch } = useContext(RegisterContext);
+  const handleSubmit: SubmitHandler<FormData> = async (_) => {
+    try {
+      formRef.current?.setErrors({});
 
-  const handleSubmit: SubmitHandler<FormData> = (_) => {
-    const userInfoData = formRef.current?.getData();
-    dispatch({
-      type: 'SET_REGISTER_DATA',
-      payload: { data: userInfoData },
-    });
-    history.push('/register/address-info');
+      const data = formRef.current?.getData();
+
+      const schema = Yup.object().shape({
+        name: Yup.string().required(),
+        birthDate: Yup.string().matches(dateRegex).required(),
+        cpf: Yup.string().matches(cpfRegex).required(),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      history.push('/register/address-info');
+    } catch (err) {
+      const validationErrors: Record<string, string> = {};
+
+      if (err instanceof Yup.ValidationError) {
+        err.inner.forEach((error) => {
+          validationErrors[error?.path as keyof typeof validationErrors] =
+            error.message;
+        });
+
+        formRef?.current?.setErrors(validationErrors);
+      }
+    }
   };
 
   return (
@@ -40,19 +61,9 @@ const UserInfo: React.FC = () => {
           <Title>User&apos;s information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Input name="name" label="Name" defaultValue={state.data.name} />
-          <Input
-            name="birthDate"
-            label="Birth date"
-            defaultValue={state.data.birthDate}
-            inputMask={dateMask}
-          />
-          <Input
-            name="cpf"
-            label="CPF"
-            defaultValue={state.data.cpf}
-            inputMask={cpfMask}
-          />
+          <Input name="name" label="Name" />
+          <Input name="birthDate" label="Birth date" inputMask={dateMask} />
+          <Input name="cpf" label="CPF" inputMask={cpfMask} />
           <Button>Continue</Button>
         </Form>
       </CardContent>
