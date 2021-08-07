@@ -4,6 +4,7 @@ import { FormHandles, SubmitHandler } from '@unform/core';
 import { Form } from '@unform/web';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
+import { consultarCep } from 'correios-brasil';
 import Input from '../../../app/components/Input';
 
 import {
@@ -16,7 +17,7 @@ import {
   BackButton,
 } from './styles';
 import { cepMask } from './masks';
-import { cepRegex } from './validations';
+import { cepRegex, validateCep } from './validations';
 
 const AddressInfo: React.FC = () => {
   const history = useHistory();
@@ -54,8 +55,6 @@ const AddressInfo: React.FC = () => {
         confirmButtonColor: '#BADC58',
         willClose: () => history.push('/'),
       });
-
-      history.push('/');
     } catch (err) {
       const validationErrors: Record<string, string> = {};
 
@@ -70,7 +69,31 @@ const AddressInfo: React.FC = () => {
     }
   };
 
-  // const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleCepChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (validateCep(e.target.value)) {
+      try {
+        const cep = e.target.value.replace(/\D/, '');
+
+        const response = await consultarCep(cep);
+
+        if (response) {
+          formRef?.current?.setData({
+            state: response.uf,
+            city: response.localidade,
+            address: response.logradouro,
+            neighborhood: response.bairro,
+          });
+        }
+      } catch (err) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops! Something went wrong!',
+          text: 'We did not get a response from the server.',
+          confirmButtonColor: '#f00',
+        });
+      }
+    }
+  };
 
   return (
     <Container>
@@ -81,7 +104,12 @@ const AddressInfo: React.FC = () => {
           <Title>User&apos;s Address information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Input name="cep" label="CEP" inputMask={cepMask} />
+          <Input
+            name="cep"
+            label="CEP"
+            inputMask={cepMask}
+            onChange={handleCepChange}
+          />
           <Input name="state" label="State" disabled />
           <Input name="city" label="City" disabled />
           <Input name="address" label="Address" disabled />
