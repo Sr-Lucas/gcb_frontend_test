@@ -35,7 +35,10 @@ import RecipeCard from '../../app/components/RecipeCard';
 
 import Illustration from '../../assets/images/Illustration.png';
 import Membership from '../../assets/images/membership.png';
+
 import IllustrationWithoutBg from '../../assets/images/IllustrationWithoutBG.svg';
+import HanshakeArt from '../../assets/images/handshake_art.svg';
+import GirlCookingEggs from '../../assets/images/girl_cooking_eggs.svg';
 
 import BlocoService from '../../assets/images/bloco-service.png';
 
@@ -185,6 +188,11 @@ const Home: React.FC = () => {
               </Text>
             </ContentWidthContraint>
             <Button>Know more</Button>
+            <ShowcaseContainer>
+              <BackDrop>
+                <Image src={HanshakeArt} alt="" />
+              </BackDrop>
+            </ShowcaseContainer>
           </Content>
         </ContentWrapper>
       </Container>
@@ -224,6 +232,11 @@ const Home: React.FC = () => {
               <MembershipInput placeholder="Enter you email address" />
               <MembershipButton>Join</MembershipButton>
             </MembershipInputWrapper>
+            <ShowcaseContainer>
+              <BackDrop>
+                <Image src={GirlCookingEggs} alt="" />
+              </BackDrop>
+            </ShowcaseContainer>
           </Content>
         </ContentWrapper>
       </Container>
