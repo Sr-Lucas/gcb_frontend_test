@@ -61,6 +61,7 @@ const Home: React.FC = () => {
 
   const posts = [
     {
+      id: 1,
       image: Blog1,
       title: 'Quick-start guide to nuts and seeds',
       author: {
@@ -69,6 +70,7 @@ const Home: React.FC = () => {
       },
     },
     {
+      id: 2,
       image: Blog2,
       title: 'Nutrition: Tips for Improving Your Health',
       author: {
@@ -77,6 +79,7 @@ const Home: React.FC = () => {
       },
     },
     {
+      id: 3,
       image: Blog3,
       title: 'The top 10 benefits of eating healthy',
       author: {
@@ -85,6 +88,7 @@ const Home: React.FC = () => {
       },
     },
     {
+      id: 4,
       image: Blog4,
       title: 'What Makes a Healthy Diet?',
       author: {
@@ -177,7 +181,7 @@ const Home: React.FC = () => {
             <ScrollContainer vertical={false} horizontal>
               <Section onFocus={enableKeyboardCursorToScroll} ref={scrollRef}>
                 {posts.map((post) => (
-                  <BlogCard post={post} />
+                  <BlogCard post={post} key={post.id} />
                 ))}
               </Section>
             </ScrollContainer>
