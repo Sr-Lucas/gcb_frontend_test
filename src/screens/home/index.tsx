@@ -1,6 +1,7 @@
-import React, { createRef } from 'react';
+import React, { createRef, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import Search from '../../app/components/Search';
+import SearchInput from '../../app/components/Search';
+import { BookOpen, Columns, LogIn } from '../../styles/icons';
 import {
   Container,
   ContentWidthContraint,
@@ -27,6 +28,8 @@ import {
   ScrollContainer,
   FooterWrapper,
   CopyrightText,
+  NavigationBar,
+  NavigationBarButton,
 } from './styles';
 import RecipeCard from '../../app/components/RecipeCard';
 
@@ -58,6 +61,16 @@ const Home: React.FC = () => {
       scrollRef.current.focus();
     }
   };
+
+  const recipesSection = useRef<HTMLDivElement>(null);
+  const blogSection = useRef<HTMLDivElement>(null);
+  const joinSection = useRef<HTMLDivElement>(null);
+
+  const gotoSection = (ref: React.RefObject<HTMLDivElement>) =>
+    window.scrollTo({
+      top: ref?.current?.offsetTop ?? 0,
+      behavior: 'smooth',
+    });
 
   const posts = [
     {
@@ -105,9 +118,17 @@ const Home: React.FC = () => {
           <Header>
             <Logo>Healthy Food</Logo>
             <NavigationWrapper>
-              <NavigatorHeaderButton>HEALTHY RECIPES</NavigatorHeaderButton>
-              <NavigatorHeaderButton>BLOG</NavigatorHeaderButton>
-              <NavigatorHeaderButton>JOIN</NavigatorHeaderButton>
+              <NavigatorHeaderButton
+                onClick={() => gotoSection(recipesSection)}
+              >
+                HEALTHY RECIPES
+              </NavigatorHeaderButton>
+              <NavigatorHeaderButton onClick={() => gotoSection(blogSection)}>
+                BLOG
+              </NavigatorHeaderButton>
+              <NavigatorHeaderButton onClick={() => gotoSection(joinSection)}>
+                JOIN
+              </NavigatorHeaderButton>
               <RegisterButton onClick={() => history.push('/register')}>
                 REGISTER
               </RegisterButton>
@@ -115,7 +136,7 @@ const Home: React.FC = () => {
           </Header>
           <Content align="left">
             <Title size={48}>Ready for Trying a new recipe?</Title>
-            <Search />
+            <SearchInput />
             <ShowcaseContainer>
               <BackDrop>
                 <Image src={IllustrationWithoutBg} alt="" />
@@ -125,7 +146,7 @@ const Home: React.FC = () => {
         </ContentWrapper>
       </Container>
 
-      <Container>
+      <Container ref={recipesSection}>
         <ContentWrapper>
           <Content align="center">
             <TitleCenterTopWrapper>
@@ -168,7 +189,7 @@ const Home: React.FC = () => {
         </ContentWrapper>
       </Container>
 
-      <Container>
+      <Container ref={blogSection}>
         <ContentWrapper>
           <Content align="center">
             <TitleCenterTopWrapper>
@@ -189,7 +210,11 @@ const Home: React.FC = () => {
         </ContentWrapper>
       </Container>
 
-      <Container backgroundArt={Membership} artPosition="right">
+      <Container
+        backgroundArt={Membership}
+        artPosition="right"
+        ref={joinSection}
+      >
         <ContentWrapper>
           <Content align="left">
             <TitleMembership size={32}>
@@ -210,6 +235,21 @@ const Home: React.FC = () => {
         <span>Privacy Policy</span>
         <span>Terms and Conditions</span>
       </FooterWrapper>
+
+      <NavigationBar>
+        <NavigationBarButton onClick={() => gotoSection(recipesSection)}>
+          <BookOpen size={18} />
+          <span>RECIPES</span>
+        </NavigationBarButton>
+        <NavigationBarButton onClick={() => gotoSection(blogSection)}>
+          <Columns size={18} />
+          <span>BLOG</span>
+        </NavigationBarButton>
+        <NavigationBarButton onClick={() => gotoSection(joinSection)}>
+          <LogIn size={18} />
+          <span>JOIN</span>
+        </NavigationBarButton>
+      </NavigationBar>
     </>
   );
 };

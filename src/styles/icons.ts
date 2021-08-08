@@ -1,1 +1,8 @@
-export { Search, ArrowLeft } from 'styled-icons/feather';
+export {
+  Search,
+  ArrowLeft,
+  BookOpen,
+  Columns,
+  Grid,
+  LogIn,
+} from 'styled-icons/feather';

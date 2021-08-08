@@ -392,9 +392,10 @@ export const MembershipInput = styled.input`
 `;
 
 export const TitleMembership = styled(TitleComponent)`
-  @media (max-width: 1100px) {
-    font-size: 1.2rem;
-    margin-bottom: 1.2em;
+  @media (max-width: 970px) {
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.4rem;
   }
 `;
 
@@ -458,6 +459,10 @@ export const FooterWrapper = styled.div`
     text-align: center;
   }
 
+  @media (max-width: 970px) {
+    padding-bottom: 65px;
+  }
+
   @media (max-width: 690px) {
     flex-direction: column;
 
@@ -474,4 +479,44 @@ export const CopyrightText = styled.span`
   @media (max-width: 690px) {
     margin-right: 0;
   }
+`;
+
+export const NavigationBar = styled.div`
+  @media (min-width: 970px) {
+    display: none;
+  }
+
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  position: fixed;
+  bottom: 0;
+
+  background-color: #ffff;
+  width: 100%;
+  height: 60px;
+
+  -webkit-box-shadow: 2px -2px 17px -2px rgba(0, 0, 0, 0.13);
+  box-shadow: 2px -2px 17px -2px rgba(0, 0, 0, 0.13);
+`;
+
+export const NavigationBarButton = styled.div`
+  span {
+    font-size: 0.65rem;
+    letter-spacing: 1.2px;
+    text-align: center;
+    color: #000000;
+    margin-top: 6px;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 60px;
+  width: calc(100% / 3);
 `;
