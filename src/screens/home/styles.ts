@@ -126,6 +126,9 @@ export const RegisterButton = styled(ButtonComponent)`
   }
 
   @media (max-width: 970px) {
+    height: 34px;
+    width: 85px;
+    margin-right: 1em;
     background-color: var(--primary);
     color: var(--white);
   }
