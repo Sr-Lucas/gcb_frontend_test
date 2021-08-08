@@ -12,11 +12,10 @@ import {
   CardContent,
   Header,
   BackButton,
+  Title,
 } from './styles';
 
 import RegisterArt from '../../assets/images/register_art.svg';
-
-import Title from './_components/Title';
 
 const Register: React.FC = () => {
   const history = useHistory();
@@ -27,10 +26,10 @@ const Register: React.FC = () => {
         <BackButton onClick={() => history.push('/')} />
         <Logo>Healthy Food</Logo>
       </Header>
+      <RegisterArtWrapper>
+        <RegisterArtImage src={RegisterArt} />
+      </RegisterArtWrapper>
       <ContentWrapper>
-        <RegisterArtWrapper>
-          <RegisterArtImage src={RegisterArt} />
-        </RegisterArtWrapper>
         <CardContent>
           <Title>The registration will take just a few steps!</Title>
           <SubTitle>You can start whenever you are ready:</SubTitle>
