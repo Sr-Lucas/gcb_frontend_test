@@ -24,7 +24,7 @@ const Input: React.FC<InputProps> = ({
 }: InputProps) => {
   const inputRef = useRef(null);
 
-  const { fieldName, defaultValue = '', registerField, error } = useField(name);
+  const { fieldName, defaultValue, registerField, error } = useField(name);
 
   const [mask, setMask] = useState(defaultValue);
 

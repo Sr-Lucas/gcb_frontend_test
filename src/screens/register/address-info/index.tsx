@@ -5,6 +5,7 @@ import { Form } from '@unform/web';
 import Swal from 'sweetalert2';
 import * as Yup from 'yup';
 import { consultarCep } from 'correios-brasil';
+import { useCookies } from 'react-cookie';
 import Input from '../../../app/components/Input';
 
 import {
@@ -22,6 +23,10 @@ import { cepRegex, validateCep } from './validations';
 const AddressInfo: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
+  // eslint-disable-next-line no-unused-vars
+  const [cookies, setCookie, removeCookie] = useCookies([
+    'registerDataPersist',
+  ]);
 
   const handleSubmit: SubmitHandler<FormData> = async (_) => {
     try {
@@ -47,6 +52,13 @@ const AddressInfo: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      setCookie(
+        'registerDataPersist',
+        { ...(cookies?.registerDataPersist ?? {}), ...data },
+        { path: '/' },
+      );
+      localStorage.setItem('REGISTER_DATA_PERSIST', JSON.stringify(data));
 
       Swal.fire({
         icon: 'success',
@@ -109,13 +121,42 @@ const AddressInfo: React.FC = () => {
             label="CEP"
             inputMask={cepMask}
             onChange={handleCepChange}
+            defaultValue={cookies?.registerDataPersist?.cep ?? ''}
           />
-          <Input name="state" label="State" disabled />
-          <Input name="city" label="City" disabled />
-          <Input name="address" label="Address" disabled />
-          <Input name="neighborhood" label="Neighborhood" disabled />
-          <Input name="number" label="Number" />
-          <Input name="reference" label="Reference" />
+          <Input
+            name="state"
+            label="State"
+            defaultValue={cookies?.registerDataPersist?.state ?? ''}
+            disabled
+          />
+          <Input
+            name="city"
+            label="City"
+            disabled
+            defaultValue={cookies?.registerDataPersist?.city ?? ''}
+          />
+          <Input
+            name="address"
+            label="Address"
+            defaultValue={cookies?.registerDataPersist?.address ?? ''}
+            disabled
+          />
+          <Input
+            name="neighborhood"
+            label="Neighborhood"
+            defaultValue={cookies?.registerDataPersist?.neighborhood ?? ''}
+            disabled
+          />
+          <Input
+            name="number"
+            label="Number"
+            defaultValue={cookies?.registerDataPersist?.number ?? ''}
+          />
+          <Input
+            name="reference"
+            label="Reference"
+            defaultValue={cookies?.registerDataPersist?.reference ?? ''}
+          />
           <Button>Register</Button>
         </Form>
       </CardContent>

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
 import * as Yup from 'yup';
+import { useCookies } from 'react-cookie';
 import Input from '../../../app/components/Input';
 
 import {
@@ -20,9 +21,18 @@ import { dateRegex, cpfRegex } from './validations';
 const UserInfo: React.FC = () => {
   const history = useHistory();
   const formRef = useRef<FormHandles>(null);
+  // eslint-disable-next-line no-unused-vars
+  const [cookies, setCookie, removeCookie] = useCookies([
+    'registerDataPersist',
+  ]);
+
+  // eslint-disable-next-line no-console
+  console.log(cookies);
 
   const handleSubmit: SubmitHandler<FormData> = async (_) => {
     try {
+      // eslint-disable-next-line no-debugger
+      debugger;
       formRef.current?.setErrors({});
 
       const data = formRef.current?.getData();
@@ -36,6 +46,12 @@ const UserInfo: React.FC = () => {
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      setCookie(
+        'registerDataPersist',
+        { ...(cookies?.registerDataPersist ?? {}), ...data },
+        { path: '/' },
+      );
 
       history.push('/register/address-info');
     } catch (err) {
@@ -61,9 +77,23 @@ const UserInfo: React.FC = () => {
           <Title>User&apos;s information</Title>
         </Header>
         <Form ref={formRef} onSubmit={handleSubmit} style={{ width: '100%' }}>
-          <Input name="name" label="Name" />
-          <Input name="birthDate" label="Birth date" inputMask={dateMask} />
-          <Input name="cpf" label="CPF" inputMask={cpfMask} />
+          <Input
+            name="name"
+            label="Name"
+            defaultValue={cookies?.registerDataPersist?.name ?? ''}
+          />
+          <Input
+            name="birthDate"
+            label="Birth date"
+            inputMask={dateMask}
+            defaultValue={cookies?.registerDataPersist?.birthDate ?? ''}
+          />
+          <Input
+            name="cpf"
+            label="CPF"
+            inputMask={cpfMask}
+            defaultValue={cookies?.registerDataPersist?.cpf ?? ''}
+          />
           <Button>Continue</Button>
         </Form>
       </CardContent>
