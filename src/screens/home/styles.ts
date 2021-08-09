@@ -396,6 +396,7 @@ export const TitleMembership = styled(TitleComponent)`
     padding-left: 1em;
     padding-right: 1em;
     font-size: 1.4rem;
+    margin-top: 3em;
   }
 `;
 
