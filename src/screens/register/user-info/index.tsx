@@ -31,8 +31,6 @@ const UserInfo: React.FC = () => {
 
   const handleSubmit: SubmitHandler<FormData> = async (_) => {
     try {
-      // eslint-disable-next-line no-debugger
-      debugger;
       formRef.current?.setErrors({});
 
       const data = formRef.current?.getData();
