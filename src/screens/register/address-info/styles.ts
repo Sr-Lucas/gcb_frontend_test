@@ -6,6 +6,7 @@ import TitleComponent from '../_components/Title';
 import BackButtonComponent from '../_components/BackButton';
 
 export const Container = styled.div`
+  overflow-y: scroll !important;
   display: flex;
   flex-direction: column;
   height: 100vh;

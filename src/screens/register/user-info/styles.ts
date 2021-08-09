@@ -5,6 +5,7 @@ import CardContentComponent from '../_components/CardContent';
 import TitleComponent from '../_components/Title';
 
 export const Container = styled.div`
+  overflow-y: scroll !important;
   display: flex;
   flex-direction: column;
   height: 100vh;
