@@ -47,6 +47,7 @@ export const BackButton = styled(BackButtonComponent)`
   height: 2rem;
   width: 2rem;
   font-weight: bold;
+  z-index: 5;
 `;
 
 export const Logo = styled.h1`
